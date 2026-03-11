@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GorillaFrame | Premium Videografie</title>
+    
+    <link rel="icon" type="image/png" href="images/gorillaframe_logo_white.png">
+
+    <meta property="og:title" content="GorillaFrame | Premium Videografie">
+    <meta property="og:description" content="Cinematic storytelling door Thomas Wylock & Austyn Ntoubandi.">
+    <meta property="og:image" content="images/gorillaframe_logo_white.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #ffffff;
+            --muted: #888;
+            --gold: #d4af37;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, .logo {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        nav {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            width: 90%;
+            z-index: 100;
+        }
+
+        .logo img { height: 45px; width: auto; }
+        .contact-trigger { 
+            font-size: 0.8rem; 
+            border-bottom: 1px solid var(--accent); 
+            text-decoration: none; 
+            color: white; 
+            padding-bottom: 5px; 
+            transition: 0.3s;
+            font-family: 'Syncopate', sans-serif;
+        }
+        .contact-trigger:hover { color: var(--gold); border-color: var(--gold); }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); margin: 0; line-height: 1.1; }
+        .hero p { color: var(--muted); max-width: 550px; font-size: 1.1rem; margin-top: 30px; line-height: 1.6; }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 10%;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-family: 'Syncopate', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .work { padding: 120px 10%; }
+        .work h2 { margin-bottom: 60px; font-size: 1.8rem; border-left: 3px solid var(--gold); padding-left: 20px; }
+        
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 60px 40px;
+        }
+
+        .video-container {
+            position: relative;
+            background: #111;
+            aspect-ratio: 16/9;
+            border: 1px solid #1a1a1a;
+            transition: 0.5s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-container:hover { border-color: var(--gold); }
+        .video-container video { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .video-container:hover video { transform: scale(1.03); }
+        
+        .audio-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 12px;
+            color: white;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .video-label { 
+            margin-top: 15px;
+            font-size: 0.75rem; 
+            color: var(--muted); 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .team { 
+            padding: 120px 10%;
+            background: #080808;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 80px;
+        }
+
+        .team-member { text-align: left; }
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            margin-bottom: 30px;
+            filter: grayscale(100%);
+            transition: 0.5s ease;
+            border: 1px solid #1a1a1a;
+        }
+        .team-member:hover .profile-img { filter: grayscale(0%); border-color: var(--gold); }
+
+        .team h2 { font-size: 1.4rem; margin-bottom: 25px; color: var(--gold); }
+        .team p { color: #aaa; line-height: 1.9; font-weight: 300; font-size: 1.05rem; }
+        .names { font-weight: 600; color: #fff; border-bottom: 1px solid var(--gold); }
+
+        .testimonials { padding: 120px 10%; text-align: center; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: #0c0c0c;
+            padding: 50px 40px;
+            border: 1px solid #1a1a1a;
+            transition: 0.3s;
+            text-align: left;
+        }
+
+        .testimonial-card:hover { border-color: var(--gold); background: #111; }
+        .stars { color: var(--gold); margin-bottom: 20px; letter-spacing: 3px; font-size: 0.9rem; }
+        .testimonial-card p { font-style: italic; color: #ccc; font-size: 1rem; margin-bottom: 30px; line-height: 1.7; }
+        .testimonial-card h4 { font-family: 'Syncopate', sans-serif; font-size: 0.75rem; color: #fff; margin: 0; }
+        .testimonial-card span { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
+
+        footer { padding: 120px 10% 80px; text-align: center; border-top: 1px solid #111; }
+        .cta-big {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            text-decoration: none;
+            color: var(--accent);
+            margin-bottom: 40px;
+            display: inline-block;
+            transition: 0.4s;
+        }
+        .cta-big:hover { color: var(--gold); transform: translateY(-5px); }
+        
+        .insta-btn {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            border: 1px solid var(--gold);
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            transition: 0.3s;
+        }
+        .insta-btn:hover { background: var(--gold); color: black; }
+
+        .footer-mail { color: var(--muted); text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 0 5%; }
+            .work, .team, .testimonials { padding: 80px 5%; }
+            .work-grid { grid-template-columns: 1fr; gap: 50px; }
+            .hero h1 { font-size: 3rem; }
+            nav .contact-trigger { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="images/gorillaframe_logo_white.png" alt="Gorilla Frame Logo">
+        </div>
+        <a href="mailto:contact.gorillaframe@gmail.com" class="contact-trigger">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h1>UNSEEN<br>PERSPECTIVES.</h1>
+        <p>Thomas Wylock & Austyn Ntoubandi. Wij leggen vast wat anderen niet kunnen zien met high-end drones en cinematic videografie.</p>
+        <a href="#portfolio" class="scroll-down">EXPLORE WORK ↓</a>
+    </section>
+
+    <section class="work" id="portfolio">
+        <h2>Selected Work</h2>
+        <div class="work-grid">
+            
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/suninvest_locatie_1.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Real Estate</span><span>Aerial Survey</span></div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/suninvest_locatie_2.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Corporate</span><span>Sun Invest Tour</span></div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/trouwfeest_1.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Lifestyle</span><span>Wedding Story</span></div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/trouwdecoratie_1.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Events</span><span>Interior Details</span></div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/motorcross_stanwillaert.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Action</span><span>Motocross FPV</span></div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container" onclick="toggleAudio(this)">
+                    <div class="audio-icon">🔇 Click for Sound</div>
+                    <video autoplay muted loop playsinline><source src="videos/africancup_barendracht.mp4" type="video/mp4"></video>
+                </div>
+                <div class="video-label"><span>Sports</span><span>African Cup Highlights</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="team-member">
+            <img src="images/thomaswylock.jpg" alt="Thomas Wylock" class="profile-img">
+            <h2>The Precision</h2>
+            <p><span class="names">Thomas Wylock</span> focust op de technische limieten van beeldvorming. Met uiterste precisie navigeert hij door uitdagende omgevingen om dat ene unieke perspectief vast te leggen.</p>
+        </div>
+        <div class="team-member">
+            <img src="images/austynntoubandi.jpg" alt="Austyn Ntoubandi" class="profile-img">
+            <h2>The Vision</h2>
+            <p><span class="names">Austyn Ntoubandi</span> vertaalt beelden naar emotie. Als creative director zorgt hij ervoor dat elk frame bijdraagt aan een verhaal dat impact maakt.</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Client Feedback</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"De samenwerking met Gorilla Frame verliep uiterst professioneel. Ze begrepen onze visie perfect en leverden een verbluffend resultaat af."</p>
+                <h4>Tim Janssens</h4>
+                <span>CEO bij Sun Invest</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Twee jonge creatievelingen. Eén missie: de wereld vastleggen vanuit een nieuw perspectief. Rauw, puur en indrukwekkend."</p>
+                <h4>Liesbeth Wellens</h4>
+                <span>AVW&D</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:contact.gorillaframe@gmail.com" class="cta-big">LET'S CREATE.</a>
+        
+        <div style="margin-bottom: 20px;">
+            <a href="https://www.instagram.com/gorillaframe/" target="_blank" class="insta-btn">
+                FOLLOW @GORILLAFRAME
+            </a>
+        </div>
+
+        <a href="mailto:contact.gorillaframe@gmail.com" class="footer-mail">contact.gorillaframe@gmail.com</a>
+        <p style="color: var(--muted); font-size: 0.75rem; margin-bottom: 10px;">BTW BE 1021.587.469</p>
+        <p style="color: #222; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;">© 2026 GORILLAFRAME — BELGIUM</p>
+    </footer>
+
+    <script>
+        function toggleAudio(container) {
+            const video = container.querySelector('video');
+            const icon = container.querySelector('.audio-icon');
+            if (video.muted) {
+                video.muted = false;
+                icon.innerHTML = '🔊 Sound On';
+            } else {
+                video.muted = true;
+                icon.innerHTML = '🔇 Click for Sound';
+            }
+        }
+    </script>
+
+</body>
+</html>
